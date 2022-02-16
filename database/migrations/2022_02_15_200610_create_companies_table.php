@@ -10,10 +10,11 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('street');
             $table->string('building_number');
-            $table->string('citt');
+            $table->string('city');
             $table->string('postcode');
             $table->string('telephone');
             $table->string('facebook')->nullable();
@@ -21,6 +22,8 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->string('discount');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

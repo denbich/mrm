@@ -1,83 +1,107 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="pl">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logos/icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/logos/icon.png">
+  <title> @yield('title') | MRM Rybnik </title>
+  <!--     Fonts and icons     -->
+  <style>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+      @font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 100;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-Thin.woff2') }}) format('woff2');
+}
+      @font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 200;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-ExtraLight.woff2') }}) format('woff2');
+}
+      @font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 300;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-Light.woff2') }}) format('woff2');
+}
+      @font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-Regular.woff2') }}) format('woff2');
+}
+@font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 500;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-Medium.woff2') }}) format('woff2');
+}
+@font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 600;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-SemiBold.woff2') }}) format('woff2');
+}
+@font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 700;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-Bold.woff2') }}) format('woff2');
+}
+@font-face {
+    font-family: 'Favela';
+    font-style: normal;
+    font-weight: 900;
+    font-stretch: 100%;
+    src: url({{ url('/assets/fonts/Favela-Black.woff2') }}) format('woff2');
+}
+  </style>
+  <!-- Nucleo Icons -->
+  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.0.1" rel="stylesheet" />
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+<body class="">
 
-                    </ul>
+    @yield('content')
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+  <!--   Core JS Files   -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="/assets/js/argon-dashboard.min.js?v=2.0.0"></script>
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+  @yield('script')
 </body>
+
 </html>

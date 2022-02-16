@@ -11,7 +11,7 @@ use App\Http\Controllers\HomeController;
 Route::controller(HomeController::class)->middleware('setlocale')->group(function() {
         Route::post('/logout', 'logout')->name('logout');
         Route::get('/login', 'loginr')->name('login');
-        
+
     Route::prefix('/uczen')->group(function(){
         Route::middleware('guest')->group(function(){
             Route::get('/', 'login')->name('student.login');
@@ -28,6 +28,7 @@ Route::controller(HomeController::class)->middleware('setlocale')->group(functio
     });
 
     Route::get('/home', 'redirect')->name('home');
+    Route::redirect('/', '/uczen');
 
 });
 
